@@ -1,0 +1,97 @@
+﻿@model ML.AsignarMateria
+@{
+    ViewBag.Title = "GetAllMateriAlumno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Materias Asignadas</h2>
+
+<div class="container">
+    @*<div class="row">
+            <div class="col-md-12">
+                <h2>Alumno</h2>
+            </div>
+        </div>*@
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Materias Asignadas  </h5>
+
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Alumno.Nombre)
+
+            @Html.TextBoxFor(model => model.Alumno.Nombre, new { @class = "form-control"})
+
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <div class="col-md- offset-9" ">
+            @Html.ActionLink(" Asiganr Materias ", "GetAlMateriaNoAsignadasByIdAlumno", "AlumnoMateria", new { @class = "btn btn-success bi bi-plus-circle" })
+
+        </div>
+    </div>
+    @using (Html.BeginForm("DeleteMateriasAsignadas", "AlumnoMateria", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        if (Model.AsignarMaterias != null)
+        {
+            <h5>Materias Asignadas de  </h5>
+
+            <div class="row">
+                <div class="col-md-11">
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="visually-hidden-focusable">IdUsuario</th>
+                                    <th>Nombre</th>
+                                    <th>Costo</th>
+                                    <th>Eliminar</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (ML.AsignarMateria asignar in Model.AsignarMaterias)
+                                {
+                                    <tr>
+                                        <td class="visually-hidden-focusable">@asignar.IdAlumnoMateria</td>
+                                        <td>@asignar.Materia.Nombre</td>
+                                        <td>@asignar.Materia.Costo</td>
+
+                                        <td>
+                                            <input class="form-check-input" name="MateriasSeleccionar" type="checkbox" value="@asignar.IdAlumnoMateria" id="flexCheckDefault">
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.ActionLink("Regresar", "AlumnoGetAll", "AlumnoMateria", new { @class = "btn btn-info" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md- offset-9 ">
+                    <button type="submit" class="btn btn-danger"> Eliminar materias </button>
+                </div>
+            </div>
+
+        }
+        else
+        {
+            <div class="alert alert-danger " role="alert">
+                No encontraron Usuario registrados. Error: @ViewBag.Message;
+            </div>
+        }
+    }
+
+</div>

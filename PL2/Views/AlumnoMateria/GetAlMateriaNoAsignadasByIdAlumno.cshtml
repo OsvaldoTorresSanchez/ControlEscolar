@@ -1,0 +1,81 @@
+﻿@model ML.Materia
+@{
+    ViewBag.Title = "GetAlMateriaNoAsignadasByIdAlumno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Materias no asignadas</h2>
+
+<div class="container">
+    @*<div class="row">
+            <div class="col-md-12">
+                <h2>Alumno</h2>
+            </div>
+        </div>*@
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Materias Asignadas  </h5>
+
+            <hr />
+        </div>
+    </div>
+
+    <br />
+    @using (Html.BeginForm("AsignarMateriasAsignadas", "AlumnoMateria", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+
+        if (Model.Materias != null)
+        {
+            <div class="row">
+                <div class="col-md-11">
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="visually-hidden-focusable">IdUsuario</th>
+                                    <th>Nombre</th>
+                                    <th>Costo</th>
+                                    <th>Agregar</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (ML.Materia asignar in Model.Materias)
+                                {
+                                    <tr>
+                                        <td class="visually-hidden-focusable">@asignar.IdMateria</td>
+                                        <td>@asignar.Nombre</td>
+                                        <td>@asignar.Costo</td>
+
+                                        <td>
+                                            <input class="form-check-input" name="MateriasAsignadas" type="checkbox" value="@asignar.IdMateria" id="flexCheckDefault">
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.ActionLink("Regresar", "AlumnoGetAll", "AlumnoMateria", new { @class = "btn btn-info" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md- offset-9 ">
+                    <button type="submit" class="btn btn-success"> Asignar materias </button>
+                </div>
+            </div>
+
+        }
+        else
+        {
+            <div class="alert alert-danger " role="alert">
+                No encontraron Usuario registrados. Error: @ViewBag.Message;
+            </div>
+        }
+    }
+</div>
