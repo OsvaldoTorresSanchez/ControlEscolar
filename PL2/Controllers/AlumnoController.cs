@@ -118,5 +118,7 @@ namespace PL2.Controllers
 
             return PartialView("Modal");
         }
+
+       
     }
 }

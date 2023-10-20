@@ -63,6 +63,9 @@
     <Compile Include="GetMateriasNoAsignadas_Result.cs">
       <DependentUpon>Materias.tt</DependentUpon>
     </Compile>
+    <Compile Include="LoginGetById_Result.cs">
+      <DependentUpon>Materias.tt</DependentUpon>
+    </Compile>
     <Compile Include="Materia.cs">
       <DependentUpon>Materias.tt</DependentUpon>
     </Compile>
